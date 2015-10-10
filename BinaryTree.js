@@ -51,7 +51,6 @@ BinaryTree.prototype.GetNode = function(value) {
 BinaryTree.prototype.DeleteNode = function(value){
    for(var i=0; i < arguments.length; i++){
     var node = this.GetNode(arguments[i]);
-     console.log(arguments[i]);
     if(node){
       if(!node.left && !node.right){
         if(node.parent.left === node)
