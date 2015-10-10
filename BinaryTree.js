@@ -10,13 +10,13 @@ var BinaryTree = function () {
 };
 
 BinaryTree.prototype.Insert = function (value){
-    for(var i=0; i<arguments.length; i++){
+     for(var i=0; i < arguments.length; i++){
         if(!this.root) {
-            this.root = new Node(value);
-            return this;
+            this.root = new Node(arguments[i]);
         }
         else {
-            (function insert(newNode){
+          var value = arguments[i];
+            (function insert(newNode){ 
                 if(value < newNode.value) {
                     if(!newNode.left) {
                         newNode.left = new Node(value);  
@@ -33,9 +33,9 @@ BinaryTree.prototype.Insert = function (value){
                         insert(newNode.right);
                     }
             })(this.root);
-            return this;
         }
     }
+  return this;
 };
 
 
@@ -52,7 +52,8 @@ BinaryTree.prototype.inOrderTraversal = function(){
 };
 
 var bt = new BinaryTree();
-    bt.Insert(25);
-    bt.Insert(4);
+    bt.Insert(25,4, 5, 92);
 
+
+console.log("order");
     bt.inOrderTraversal();
