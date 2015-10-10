@@ -38,6 +38,24 @@ BinaryTree.prototype.Insert = function (value){
   return this;
 };
 
+BinaryTree.prototype.GetNode = function(value) {
+    var node = this.root;
+    var get = function(node) {
+        if (!node) return null;
+        if (value === node.value) {
+            return node;
+        } else if (value > node.value) {
+            return get(node.right);
+        } else if (value < node.value) {
+            return get(node.left);
+        }
+    };
+    return get(node);
+};
+
+BinaryTree.prototype.DeleteNode = function(node){
+    
+};
 
 BinaryTree.prototype.inOrderTraversal = function(){
     (function inorderTraversal(node) {  
@@ -71,6 +89,8 @@ extend(NewBinaryTree, BinaryTree);
 var bt = new NewBinaryTree();
     bt.Insert(25,4, 5, 92);
 
+    var node = bt.GetNode(3);
+    console.log("node");console.log(node);
 
 console.log("order");
     bt.inOrderTraversal();
