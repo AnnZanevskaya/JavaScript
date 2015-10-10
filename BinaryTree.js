@@ -51,7 +51,24 @@ BinaryTree.prototype.inOrderTraversal = function(){
 })(this.root);
 };
 
-var bt = new BinaryTree();
+var NewBinaryTree = function(){
+    BinaryTree.apply(this,arguments);
+};
+
+function extend(child, parent){
+    var Temp = function(){};
+    Temp.prototype = parent.prototype;
+    child.prototype = new Temp();
+    child.prototype.constructor = child;
+    child.superclass = parent.prototype;
+    return child;
+}
+
+extend(NewBinaryTree, BinaryTree);
+
+
+
+var bt = new NewBinaryTree();
     bt.Insert(25,4, 5, 92);
 
 
