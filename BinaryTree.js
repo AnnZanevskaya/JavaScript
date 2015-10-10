@@ -49,41 +49,41 @@ BinaryTree.prototype.GetNode = function(value) {
 };
 
 BinaryTree.prototype.DeleteNode = function(value){
-    var node = this.GetNode(value);
+   for(var i=0; i < arguments.length; i++){
+    var node = this.GetNode(arguments[i]);
+     console.log(arguments[i]);
     if(node){
       if(!node.left && !node.right){
         if(node.parent.left === node)
           node.parent.left = null;
         else 
           node.parent.right = null;
-        return this;
       }
-      if(!node.left) {
+      else if(!node.left) {
         if(node.parent.left === node)
           node.parent.left = node.right;
         else 
           node.parent.right = node.right;
-        return this;
       }
-      if(!node.right) {
+      else if(!node.right) {
         if(node.parent.left === node)
           node.parent.left = node.left;
         else 
           node.parent.right = node.left;
-        return this;
       }
-      node.right.parent = node.parent;
-      node.right.left = node.left;
-      node.left.parent = node.right;
-      
-      if(node.parent.left === node){
-         node.parent.left = node.right;
-      }
-      else
-        node.parent.right = node.right;
+      else if (node.left && node.right){
+        node.right.parent = node.parent;
+        node.right.left = node.left;
+        node.left.parent = node.right;
+        if(node.parent.left === node)
+           node.parent.left = node.right;
+        else
+           node.parent.right = node.right;
        node = node.right;
-      return this;
+      }    
     }
+   }
+  return this;
 };
 
 BinaryTree.prototype.inOrderTraversal = function(){
@@ -117,7 +117,7 @@ extend(NewBinaryTree, BinaryTree);
 
 var bt = new NewBinaryTree();
     bt.Insert(25, 4, 5, 92, 3, 87, 100);
-    bt.DeleteNode(92);
+    bt.DeleteNode(4, 5);
 
 
 console.log("order");
