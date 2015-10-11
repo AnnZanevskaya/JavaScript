@@ -66,7 +66,7 @@ LinkedList.prototype.insertAt = function(value, index){
   }
   //if we want to insert node last and node.next value is null (it's tail)
   //or even when we make a mistake with index (only non negative index)
-  else if(index >= 0){
+  if(index >= 0){
     newNode.prev = this.tail;
     this.tail.next = newNode;
     this.tail = newNode;
