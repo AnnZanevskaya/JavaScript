@@ -14,6 +14,14 @@ function tableCreate(){
     }
   }
   body.appendChild(table);
+
+  table.addEventListener('click', function(e) {
+    var target = e.target;
+    if(target.style.background.includes('red'))
+       target.style.background = 'blue';   
+    else  
+       target.style.background = 'red'; 
+  });
 }
 tableCreate();
 
