@@ -52,24 +52,29 @@ BinaryTree.prototype.DeleteNode = function(value){
    for(var i=0; i < arguments.length; i++){
     var node = this.GetNode(arguments[i]);
     if(node){
+        //if two children doesn't exist
       if(!node.left && !node.right){
+          //to know is this node left for parent or right
         if(node.parent.left === node)
           node.parent.left = null;
         else 
           node.parent.right = null;
       }
+      //if left child doesn't exist
       else if(!node.left) {
         if(node.parent.left === node)
           node.parent.left = node.right;
         else 
           node.parent.right = node.right;
       }
+      //if right child doesn't exist 
       else if(!node.right) {
         if(node.parent.left === node)
           node.parent.left = node.left;
         else 
           node.parent.right = node.left;
       }
+      //if two children exist
       else if (node.left && node.right){
         node.right.parent = node.parent;
         node.right.left = node.left;
