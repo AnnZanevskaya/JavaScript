@@ -21,10 +21,19 @@ LinkedList.prototype.append = function (value){
   return this;
 };
 
+LinkedList.prototype.headView = function(){
+    return this.head;
+};
+
+LinkedList.prototype.tailView = function(){
+    return this.tail;
+};
+
 LinkedList.prototype.viewList = function(){
-  while(this.head){
-    console.log(this.head.value);
-    this.head = this.head.next;
+  var head = this.head;
+  while(head){
+    console.log(head.value);
+    head = head.next;
   }
 };
 
@@ -36,3 +45,6 @@ list.append(5);
 list.append(6);
 
 list.viewList();
+
+console.log(list.headView().value);
+console.log(list.tailView().value);
