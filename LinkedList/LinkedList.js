@@ -7,7 +7,7 @@ var Node  = function(value) {
 var LinkedList = function () {
     this.head = null;
     this.tail = null;
-  this.count = 0;
+    this.count = 0;
 };
 
 LinkedList.prototype.append = function (value){
@@ -16,7 +16,7 @@ LinkedList.prototype.append = function (value){
     this.head = node;
   else {
     this.tail.next = node;
-    node.prev = this.head;
+    node.prev = this.tail;
   }
    this.tail = node;
    this.count++;
@@ -45,22 +45,47 @@ LinkedList.prototype.at = function(index){
   }
 };
 
+LinkedList.prototype.insertAt = function(value, index){
+  var node = this.at(index);
+  var newNode = new Node(value);
+  if(node){
+    this.count++;
+    node.prev.next = newNode;
+    newNode.prev = node.prev;
+    newNode.next = node; 
+    node.prev = newNode;  
+  }
+  return this;
+};
+
 LinkedList.prototype.viewList = function(){
   var head = this.head;
   while(head){
-    console.log(head.value);
+    console.log(head.value); 
     head = head.next;
   }
 };
 
 var list = new LinkedList();
+list.append(0);
+list.append(1);
+list.append(2);
 list.append(4);
 list.append(5);
-list.append(6);
-list.append(7);
 list.viewList();
 
 list.at(2);
 console.log("---------------");
-console.log(list.at(3).value);
+console.log(list.at(3).prev.value);
+
+console.log("---------------");
+list.insertAt(3,3);
+list.viewList();
+
+
+
+
+
+
+
 
