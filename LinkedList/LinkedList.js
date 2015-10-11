@@ -31,6 +31,7 @@ LinkedList.prototype.tailView = function(){
     return this.tail;
 };
 
+//return node or null if node doesn't exist
 LinkedList.prototype.at = function(index){
   if(index >= this.count || index < 0) 
     return null;
@@ -55,6 +56,7 @@ LinkedList.prototype.insertAt = function(value, index){
     node.prev = newNode; 
       return this;
     }
+    //if we want to insert node first and node.prev value is null (it's head)
      if(node.next){
       newNode.next = node; 
       node.prev = newNode; 
@@ -62,6 +64,8 @@ LinkedList.prototype.insertAt = function(value, index){
       return this;
      }
   }
+  //if we want to insert node last and node.next value is null (it's tail)
+  //or even when we make a mistake with index (only non negative index)
   else if(index >= 0){
     newNode.prev = this.tail;
     this.tail.next = newNode;
@@ -78,12 +82,14 @@ LinkedList.prototype.deleteAt = function(index){
        node.prev.next = node.next;
        return this;
      }
+     //if node to delete is tail and node.next is null
     if(node.prev)
        {
        node.prev.next = null;
        this.tail= node.prev;
        return this;
        }
+      //if node to delete is head and node.prev is null
      if(node.next)
        {
          node.next.prev = null;
@@ -94,6 +100,20 @@ LinkedList.prototype.deleteAt = function(index){
   
 };
 
+LinkedList.prototype.reverse = function() {
+    var node = this.head;
+    var temp;
+    while (node) {
+        temp = node.prev;
+        node.prev = node.next;
+        node.next = temp;
+        node = node.prev;
+    }
+    temp = this.head;
+    this.head = this.tail;
+    this.tail = temp;
+    return this;
+};
 
 LinkedList.prototype.viewList = function(){
   var head = this.head;
@@ -123,7 +143,6 @@ list.viewList();
 console.log("---------------");
 console.log(list.headView().value);
 console.log(list.tailView().value);
-
-
-
-
+console.log("---------------");
+list.reverse();
+list.viewList();
