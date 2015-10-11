@@ -50,11 +50,11 @@ LinkedList.prototype.insertAt = function(value, index){
   this.count++;
   if(node){
     if(node.next && node.prev){
-    node.prev.next = newNode;
-    newNode.prev = node.prev;
-    newNode.next = node; 
-    node.prev = newNode; 
-      return this;
+        node.prev.next = newNode;
+        newNode.prev = node.prev;
+        newNode.next = node; 
+        node.prev = newNode;
+        return this;
     }
     //if we want to insert node first and node.prev value is null (it's head)
      if(node.next){
@@ -70,7 +70,9 @@ LinkedList.prototype.insertAt = function(value, index){
     newNode.prev = this.tail;
     this.tail.next = newNode;
     this.tail = newNode;
+    return this;
   }
+  this.count--;
 };
 
 LinkedList.prototype.deleteAt = function(index){
