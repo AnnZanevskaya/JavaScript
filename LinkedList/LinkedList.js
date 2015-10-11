@@ -115,6 +115,25 @@ LinkedList.prototype.reverse = function() {
     return this;
 };
 
+LinkedList.prototype.each = function(func) {
+    var node = this.head;
+    while (node) {
+        func(node);
+        node = node.next;
+    }
+    return this;
+};
+
+LinkedList.prototype.indexOf = function(nodeToFind){
+  var node = this.head;
+  for(var i =0; i< this.count; i++){
+    if(node === nodeToFind)
+      return i;
+    else node = node.next;
+  }
+  return -1;
+};
+
 LinkedList.prototype.viewList = function(){
   var head = this.head;
   while(head){
@@ -146,3 +165,15 @@ console.log(list.tailView().value);
 console.log("---------------");
 list.reverse();
 list.viewList();
+console.log("---------------");
+
+var node = list.at(4);
+console.log(list.at(4));
+console.log(list.indexOf(node));
+            
+
+
+            
+            
+            
+            
