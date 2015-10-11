@@ -32,10 +32,8 @@ LinkedList.prototype.tailView = function(){
 };
 
 LinkedList.prototype.at = function(index){
-  if(index >= this.count || index < 0) {
-    console.log("invalid index");
-    return this;
-  }
+  if(index >= this.count || index < 0) 
+    return null;
   else{
     var node = this.head;
     for(var i=0; i<index; i++){
@@ -48,15 +46,54 @@ LinkedList.prototype.at = function(index){
 LinkedList.prototype.insertAt = function(value, index){
   var node = this.at(index);
   var newNode = new Node(value);
+  this.count++;
   if(node){
-    this.count++;
+    if(node.next && node.prev){
     node.prev.next = newNode;
     newNode.prev = node.prev;
     newNode.next = node; 
-    node.prev = newNode;  
+    node.prev = newNode; 
+      return this;
+    }
+     if(node.next){
+      newNode.next = node; 
+      node.prev = newNode; 
+      this.head = newNode;
+      return this;
+     }
   }
-  return this;
+  else if(index >= 0){
+    newNode.prev = this.tail;
+    this.tail.next = newNode;
+    this.tail = newNode;
+  }
 };
+
+LinkedList.prototype.deleteAt = function(index){
+   var node = this.at(index);
+   if(node){
+     this.count--;
+     if(node.next && node.prev){
+       node.next.prev = node.prev;
+       node.prev.next = node.next;
+       return this;
+     }
+    if(node.prev)
+       {
+       node.prev.next = null;
+       this.tail= node.prev;
+       return this;
+       }
+     if(node.next)
+       {
+         node.next.prev = null;
+         this.head = node.next;
+         return this;
+       }
+   }
+  
+};
+
 
 LinkedList.prototype.viewList = function(){
   var head = this.head;
@@ -74,17 +111,18 @@ list.append(4);
 list.append(5);
 list.viewList();
 
-list.at(2);
-console.log("---------------");
-console.log(list.at(3).prev.value);
 
 console.log("---------------");
-list.insertAt(3,3);
+list.insertAt(300,6);
 list.viewList();
+console.log("---------------");
 
-
-
-
+list.deleteAt(0);
+list.deleteAt(4);
+list.viewList();
+console.log("---------------");
+console.log(list.headView().value);
+console.log(list.tailView().value);
 
 
 
