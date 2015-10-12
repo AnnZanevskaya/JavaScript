@@ -77,7 +77,7 @@ BinaryTree.prototype.DeleteNode = function(value){
       //if two children exist
       else if (node.left && node.right){
         node.right.parent = node.parent;
-        node.right.left = node.left;
+        node.right.right = node.left; //changing for right side
         node.left.parent = node.right;
         if(node.parent.left === node)
            node.parent.left = node.right;
