@@ -98,7 +98,7 @@ BinaryTree.prototype.DeleteNode = function(value){
         node.right.parent = node.parent;
         leftnode = node.left;
         node = node.right;
-        
+        //to find min left in node.right
         while(node.left)
           node = node.left;
           
