@@ -48,6 +48,7 @@ BinaryTree.prototype.GetNode = function(value) {
     return get(node);
 };
 
+//rewrite
 BinaryTree.prototype.DeleteNode = function(value){
    for(var i=0; i < arguments.length; i++){
     var node = this.GetNode(arguments[i]);
