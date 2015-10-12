@@ -77,14 +77,19 @@ BinaryTree.prototype.DeleteNode = function(value){
       }
       //if two children exist
       else if (node.left && node.right){
-        node.right.parent = node.parent;
-        node.right.left = node.left; 
-        node.left.parent = node.right;
         if(node.parent.left === node)
            node.parent.left = node.right;
-        else
+        else 
            node.parent.right = node.right;
-       node = node.right;
+        node.right.parent = node.parent;
+        leftnode = node.left;
+        node = node.right;
+        while(node.left)
+          node = node.left;
+        if(!node.left){
+        node.left = leftnode; 
+        leftnode.parent = node;
+        }
       }    
     }
    }
@@ -121,8 +126,8 @@ extend(NewBinaryTree, BinaryTree);
 
 
 var bt = new NewBinaryTree();
-    bt.Insert(25, 4, 5, 92, 3, 87, 100);
-    bt.DeleteNode(4, 5);
+    bt.Insert(75,40, 37, 53, 73, 52,56, 50,43);
+    bt.DeleteNode(40);
 
 
 console.log("order");
