@@ -70,7 +70,10 @@ BinaryTree.prototype.DeleteNode = function(value){
             else 
                 node.parent.right = node.right;
         }
-        else this.root = node.right;
+        else {
+            this.root = node.right;
+            this.root.parent = null;
+        }
       }
       //if right child doesn't exist 
       else if(!node.right) {
@@ -81,7 +84,10 @@ BinaryTree.prototype.DeleteNode = function(value){
             else 
                  node.parent.right = node.left;
         }
-        else this.root = node.left;
+        else {
+            this.root = node.left;
+            this.root.parent = null;
+        }
       }    
       //if two children exist
       else if (node.left && node.right){ 
@@ -93,7 +99,10 @@ BinaryTree.prototype.DeleteNode = function(value){
             else 
                 node.parent.right = node.right;
           }
-        else this.root = node.right;
+        else {
+            this.root = node.right;
+            this.root.parent = null;
+        }
         
         node.right.parent = node.parent;
         leftnode = node.left;
